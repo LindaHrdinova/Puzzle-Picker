@@ -1,35 +1,38 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from './assets/vite.svg';
-import heroImg from './assets/hero.png';
 import './App.css';
 
-function App() {
-  const [count, setCount] = useState(0);
+const response = await fetch('https://myspeedpuzzling.com/api/v1/me/results', {
+  headers: {
+    Authorization: `Token ${import.meta.env.VITE_API_TOKEN}`,
+  },
+});
 
+const data = await response.json();
+
+console.log(data);
+
+const App = () => {
   return (
     <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+      <h1>MSP data</h1>
+      <h2>Results</h2>
+      <div style={{ textAlign: 'center' }}>
+        <img
+          src="https://img.myspeedpuzzling.com/original/ravensburger-cuba-99.jpg"
+          width={'400px'}
+          style={{ borderRadius: '5%' }}
+        />
+      </div>
+      <ul className="list">
+        <li>comment : null </li>
+        <li>first_attempt : false</li>
+        <li>manufacturer_name : "Ravensburger"</li>
+        <li>pieces_count : 99</li>
+        <li>puzzle_image : "ravensburger-cuba-99.jpg"</li>
+        <li>puzzle_name : "Puzzle Moment: Cuba"</li>
+        <li>time_seconds : 292</li>
+      </ul>
     </>
   );
-}
+};
 
 export default App;
